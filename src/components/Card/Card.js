@@ -5,19 +5,13 @@ export const CardComponent = ({ household, user }) => {
 
     //const startDate= new Date(household['availability'][0][0]['$date']).toLocaleDateString()
     //const endDate = new Date(household['availability'][0][1]['$date']).toLocaleDateString()
-
+    
     function Editar() {
         if (user !== undefined) {
             return <Link to={`/editHousehold/${household.id}`}><button type="button" className="btn btn-md btn-success">Editar</button></Link>
         }
         return null;
     }
-    
-    //var photos = [];
-    //if(test.exam !== undefined){
-    //    photos = test.exam.url;
-    //}
-    //
 
     return (
         <Col>

@@ -20,7 +20,7 @@ root.render(
           <Route path="/household/:id" element={<Household />} />
           <Route path="/createHousehold" element={<CreateHousehold />} />
           <Route path="/editHousehold/:id" element={<EditHousehold />} />
-          <Route path="/myHouseholds/" element={<Home />} />
+          <Route path="/myHouseholds/:id" element={<Home />} />
           <Route path="/map" element={<Map />} />
         </Route>
       </Routes>

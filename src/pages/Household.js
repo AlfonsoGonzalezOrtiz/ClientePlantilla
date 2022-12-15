@@ -41,8 +41,7 @@ export default function Household() {
       photos: [''],
       lat: 1.1,
       lon: 1.1,
-      stamp: 1.1,
-      email: ''
+      stamp: 1.1
     }]);
 
   useEffect(() => {
@@ -149,11 +148,9 @@ export default function Household() {
                     <Form.Control className="mt-3" type="number" placeholder="Ej: 5" />
                   </Form.Group>
                 </MDBCol>
-                <MDBRow className="list-group-item d-flex justify-content-between lh-sm">
-                  <Button variant="primary" type="submit" href="../">
+                <Button className="mt-5" variant="primary" type="submit" href="../">
                     Volver
-                  </Button>
-                </MDBRow>
+                </Button>
               </MDBRow>
             </MDBCol>
           </Form>

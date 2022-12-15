@@ -26,13 +26,13 @@ export default function CreateHousehold() {
     event.preventDefault();
     setIsLoading(true);
 
-    const { vendedor, description, numero, fecha, images, latitud, longitud } = formData;
+    const { vendedor, description, numero, fecha, latitud, longitud } = formData;
     var jsonData = {
       "vendedor": vendedor,
       "description": description,
       "num": numero,
       "stamp": new Date(fecha).getTime(),
-      "photos": [images],
+      "photos": ["https://i.imgur.com/69Th4Pb.jpg"],
       "lat": latitud,
       "lon": longitud,
     }
@@ -89,15 +89,6 @@ export default function CreateHousehold() {
     });
   };
 
-  async function encodeFileAsBase64URL(file) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.addEventListener('loadend', () => {
-        resolve(reader.result);
-      });
-      reader.readAsDataURL(file);
-    });
-  };
 
   return (
     <>
@@ -123,7 +114,7 @@ export default function CreateHousehold() {
               <MDBRow className="list-group-item d-flex justify-content-between lh-sm">
                 <Form.Group className="mw-25">
                   <Form.Label >Num: </Form.Label>
-                  <Form.Control className="mt-3" type="text" name="numero" placeholder="numero" onChange={updateFormData} value={formData.numero} required />
+                  <Form.Control className="mt-3" type="number" name="numero" placeholder="numero" onChange={updateFormData} value={formData.numero} required />
                 </Form.Group>
               </MDBRow>
 

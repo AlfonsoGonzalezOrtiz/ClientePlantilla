@@ -15,8 +15,12 @@ export const gethouseholds = async () => {
     return data;
 };
 
-export const getHouseholdsFromUser = async (username) => {
-    const res = await fetch(`${API_BASE_URL}/households/filter/username?name=${username}`); 
+export const getHouseholdsFromEmail = async (email) => {
+    var queryparam = '?email='
+    if(email === ''){
+      queryparam = '';
+    }
+    const res = await fetch(`${API_BASE_URL}/households/from/${queryparam}${email}`); 
     const data = await res.json();
     return data;
   };
@@ -27,6 +31,5 @@ export async function createHousehold(jsonData){
   };
 
   export async function editHousehold(id,jsonData){
-    id = "c0a0c167-0ff0-4339-a88b-e0e579020291"
     await axios.put(`${API_BASE_URL}/households/${id}`,jsonData);
     };

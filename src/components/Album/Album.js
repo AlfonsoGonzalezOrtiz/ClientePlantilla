@@ -1,21 +1,28 @@
 import { CardGroup, Container, Row } from "react-bootstrap";
-import {gethouseholds} from "../../../src/api/FetchDBData";
+import {getHouseholdsFromEmail} from "../../../src/api/FetchDBData";
 import CardComponent from "../Card/Card";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export const AlbumComponent = () => {
 
-  let user = undefined;
+  var email = null;
+  try{
+      email = JSON.parse(localStorage.getItem('profile')).email;
+  } catch (e) {
+      console.log(e);
+  }
+  const user = useParams().id;
 
-    try{
-        user = JSON.parse(localStorage.getItem('profile')).email;
-    } catch (e) {
-        console.log(e);
-    }
+  if(user === undefined && email !== null){
+    email = '';
+  }
+  if(user === undefined && email === null){
+    email = '';
+  }
 
-  const gethouseholdsMethod = async () => {
-    var households = await gethouseholds();
+  const gethouseholdsFromEmailMethod = async (email) => {
+    var households = await getHouseholdsFromEmail(email);
     return households
   };
     const [households, sethouseholds] = useState([
@@ -33,10 +40,10 @@ export const AlbumComponent = () => {
 
     useEffect(() => {
       const temp = async () => {
-        sethouseholds(await gethouseholdsMethod())
+        sethouseholds(await gethouseholdsFromEmailMethod(email))
       }
       temp()
-    }, []);
+    }, [email]);
 
     function emptyList(){
       if(households.length === 0){
@@ -54,7 +61,6 @@ export const AlbumComponent = () => {
           {households.map((household) => (
             <CardComponent key={household.id}
               household={household}
-              user={user}
             ></CardComponent>
           ))}
         </Row>
