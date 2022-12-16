@@ -6,6 +6,7 @@ import Household from "./pages/Household";
 import CreateHousehold from "./pages/CreateHousehold";
 import EditHousehold from "./pages/EditHousehold";
 import HomeParada from "./pages/HomeParada";
+import BuscarParada from "./pages/BuscarParada";
 import { Map } from "./pages/Map";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,6 +21,7 @@ root.render(
         <Route element={<Wrapper />}>
           <Route path="/" element={<HomeParada />} />
           <Route path="/sentido/:sentido/linea/:linea" element={<SentidoLinea />} />
+          <Route path="/buscarParada/:paradaString" element={<BuscarParada />} />
           <Route path="/home" element={<Home />} />
           <Route path="/household/:id" element={<Household />} />
           <Route path="/createHousehold" element={<CreateHousehold />} />

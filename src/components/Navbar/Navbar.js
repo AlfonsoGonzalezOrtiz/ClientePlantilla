@@ -25,8 +25,7 @@ export const NavbarComponent = ({ auth: Auth }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav>
-          <Nav.Link href="/createHousehold">Crear Anuncio</Nav.Link>
-          <Nav.Link href={`/myhouseholds/${user}`}>Mis anuncios</Nav.Link>
+          <Nav.Link href="/buscarParada/156">Buscar Parada</Nav.Link>
           <Nav.Link href="/map">Buscar Ubicación</Nav.Link>
         </Nav>
       </Container>

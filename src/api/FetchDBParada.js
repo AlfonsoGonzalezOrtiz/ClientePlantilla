@@ -14,3 +14,10 @@ export const getParadas = async () => {
     var data = await res.json();
     return data;
 };
+
+export const getBuscarParada = async (parada) => {
+    const res = await fetch(`${API_BASE_URL}/paradas/${parada}`);
+    var data = await res.json();
+    console.log(data);
+    return data;
+};
