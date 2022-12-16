@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:8000";
 
 const getBusByID = async (id) => {
-  const res = await fetch(`http://localhost:8000/buses/${id}`);
+  const res = await fetch(`${API_BASE_URL}/buses/${id}`);
   const data = await res.json();
   return data;
 };
