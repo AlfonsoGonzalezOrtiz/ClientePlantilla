@@ -27,6 +27,8 @@ export default function BuscarParada() {
         var parada = await getBuscarParada(paradaSring);
         if(parada === null || parada === undefined){
             parada = 154;
+            parada.lon = -4.4222507;
+            parada.lat = 36.737835;
           }
         return parada;
       };
@@ -49,8 +51,13 @@ export default function BuscarParada() {
         };
         temp();
       }, []);
-      var lat = -4.4222507;
-      var lon = 36.737835;
+      var lon = -4.4222507;
+      var lat = 36.737835;
+
+      if(parada !== undefined && parada.lon !== undefined){
+        lat = parada.lat;
+        lon = parada.lon;
+      }
 
       const latlngObject = {
         lat: lat,
