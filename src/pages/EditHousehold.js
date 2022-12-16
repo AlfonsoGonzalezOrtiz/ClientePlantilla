@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import { MDBRow } from "mdb-react-ui-kit";
 import { MDBCol } from "mdb-react-ui-kit";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { editHousehold } from "../api/FetchDBData";
@@ -42,6 +42,25 @@ export default function EditHousehold() {
     fecha = new Date(household.stamp * 1000).toISOString().slice(0, 10);
   }
 
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+  const url = useRef();
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'dcxme26dj',
+      uploadPreset: 'xfqhdhea'
+
+    }, function (error, result) {
+      console.log(result);
+      if (result.info !== undefined && result.info.url !== undefined) {
+        url.current = result.info.url;
+      }
+      return url;
+    });
+
+  }, [url])
+
   const [isLoading, setIsLoading] = useState(false);
 
   const submitHandler = async (event) => {
@@ -54,7 +73,7 @@ export default function EditHousehold() {
       "description": description,
       "num": numero,
       "stamp": new Date(fecha).getTime(),
-      "photos": ["C:\\fakepath\\vivienda.jpg"],
+      "photos": [url.current],
       "lat": latitud,
       "lon": longitud,
     }

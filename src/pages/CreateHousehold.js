@@ -5,8 +5,30 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { createHousehold } from "../api/FetchDBData";
+import { useEffect,useRef } from "react";
+
+
 
 export default function CreateHousehold() {
+
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+  const url = useRef();
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'dcxme26dj',
+      uploadPreset: 'xfqhdhea'
+
+    }, function (error, result) {
+      console.log(result);
+      if (result.info !== undefined && result.info.url !== undefined) {
+        url.current = result.info.url;
+      }
+      return url;
+    });
+
+  }, [url])
 
   const [formData, setFormData] = useState({
     vendedor: "",
@@ -32,7 +54,7 @@ export default function CreateHousehold() {
       "description": description,
       "num": numero,
       "stamp": new Date(fecha).getTime(),
-      "photos": ["https://i.imgur.com/69Th4Pb.jpg"],
+      "photos": [url.current],
       "lat": latitud,
       "lon": longitud,
     }
@@ -130,7 +152,9 @@ export default function CreateHousehold() {
               <MDBRow className="list-group-item d-flex justify-content-between lh-sm">
                 <Form.Group className="mw-25">
                   <Form.Label >Imágenes:</Form.Label>
-                  <Form.Control className="mt-3" id="#input-foto" type="file" name="images" multiple placeholder="Dirección de la vivienda" accept=".png,.jpg" onChange={updateFormData} value={formData.images} />
+                  <Button onClick={() => widgetRef.current.open()}>
+                    Upload
+                  </Button>
                 </Form.Group>
               </MDBRow>
 
