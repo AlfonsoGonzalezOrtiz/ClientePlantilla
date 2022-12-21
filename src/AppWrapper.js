@@ -13,7 +13,7 @@ import { Row, Col } from "react-bootstrap";
 
 export const Wrapper = () => {
   const CLIENT_ID =
-    "48605147423-2svm150uchjseq5kvekucr264f0l3pk2.apps.googleusercontent.com";
+    "1031190116252-d6ovg8e7pvbt90pnhamsg7d7ds7jhh6i.apps.googleusercontent.com";
   const GoogleAuth = () => {
     const [profile, setProfile] = useState(
       JSON.parse(localStorage.getItem("profile"))
